@@ -1,17 +1,18 @@
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #111;
+  background: #222;
   font-family: Arial, sans-serif;
-  user-select: none;
 }
 
 #game {
@@ -19,14 +20,13 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #222;
 }
 
 canvas {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: #4c8b45;
 }
 
 #hud {
@@ -34,95 +34,110 @@ canvas {
   top: 10px;
   left: 10px;
   right: 10px;
+
   display: flex;
   justify-content: space-between;
-  gap: 6px;
-  z-index: 5;
+
+  z-index: 10;
+  pointer-events: none;
 }
 
-#hud div {
+#hud span {
   background: rgba(0,0,0,.78);
   color: white;
-  padding: 8px 10px;
-  border-radius: 10px;
+
+  padding: 9px 11px;
+  border-radius: 11px;
+
   font-size: 13px;
   font-weight: bold;
 }
 
-#location {
+#info {
   position: absolute;
-  top: 58px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,.8);
-  color: white;
-  padding: 7px 14px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
-  z-index: 5;
-  white-space: nowrap;
-}
 
-#message {
-  position: absolute;
-  top: 100px;
+  top: 62px;
   left: 50%;
   transform: translateX(-50%);
+
   width: 90%;
+
   text-align: center;
+
   color: white;
   font-weight: bold;
-  font-size: 15px;
-  text-shadow: 1px 1px 3px #000;
-  z-index: 5;
+
+  text-shadow: 0 2px 4px black;
+
+  pointer-events: none;
+
+  z-index: 10;
 }
 
-.actionBtn {
+#actionBtn {
   display: none;
+
   position: absolute;
+
   left: 50%;
-  bottom: 170px;
+  bottom: 175px;
+
   transform: translateX(-50%);
-  border: 0;
-  background: #ffb300;
-  color: #111;
-  padding: 13px 22px;
+
+  padding: 13px 24px;
+
+  border: none;
   border-radius: 14px;
+
+  background: #ffb300;
+
+  color: #111;
+
   font-size: 16px;
   font-weight: bold;
-  z-index: 10;
-  box-shadow: 0 4px 10px #0008;
+
+  box-shadow: 0 4px 12px #0008;
+
+  z-index: 20;
 }
 
 #controls {
   position: absolute;
+
   left: 18px;
   bottom: 25px;
-  width: 155px;
+
+  width: 160px;
   height: 145px;
-  z-index: 10;
+
+  z-index: 20;
 }
 
-.ctrl {
+.control {
   position: absolute;
+
   width: 52px;
   height: 52px;
+
+  border-radius: 15px;
+
   border: 2px solid white;
-  border-radius: 14px;
-  background: rgba(0,0,0,.7);
+
+  background: rgba(0,0,0,.72);
+
   color: white;
+
   font-size: 25px;
   font-weight: bold;
 }
 
-.ctrl:active {
+.control:active {
   background: #ff9800;
-  color: #000;
+  color: black;
 }
 
 .up {
-  left: 52px;
+  left: 54px;
   top: 0;
 }
 
@@ -132,50 +147,43 @@ canvas {
 }
 
 .down {
-  left: 52px;
+  left: 54px;
   top: 58px;
 }
 
 .right {
-  left: 104px;
+  left: 108px;
   top: 58px;
 }
 
-#help {
+#mode {
   position: absolute;
-  right: 10px;
-  bottom: 30px;
-  color: white;
-  background: rgba(0,0,0,.6);
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 11px;
-}
 
-#menu {
-  position: absolute;
-  right: 10px;
-  top: 105px;
-  z-index: 10;
-}
+  right: 12px;
+  bottom: 28px;
 
-#menu button {
-  border: 0;
-  margin-left: 4px;
-  padding: 7px 9px;
-  border-radius: 8px;
-  background: rgba(0,0,0,.7);
+  padding: 9px 12px;
+
+  background: rgba(0,0,0,.75);
+
   color: white;
-  font-size: 11px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  z-index: 20;
 }
 
 @media (min-width: 700px) {
+
   #controls {
     left: 30px;
     bottom: 30px;
   }
 
-  #help {
-    font-size: 13px;
+  #actionBtn {
+    bottom: 150px;
   }
 }
