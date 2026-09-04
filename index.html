@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>🚚 Truck Dealer</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Truck Dealer</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
 <div id="game">
 
   <div id="hud">
-    <div>💰 ৳<span id="money">380000</span></div>
-    <div>⛽ <span id="fuel">100</span>%</div>
-    <div>🚚 <span id="truckName">Mini Truck</span></div>
+    <span>💰 ৳<b id="money">380000</b></span>
+    <span>⛽ <b id="fuel">100</b>%</span>
+    <span>📍 <b id="place">Showroom</b></span>
   </div>
 
   <canvas id="canvas"></canvas>
 
-  <div id="location">🏪 SHOWROOM</div>
+  <div id="info"></div>
 
-  <div id="message"></div>
-
-  <button id="action" class="actionBtn">🚪 বের হন</button>
+  <button id="actionBtn">🚚 ট্রাকে উঠুন</button>
 
   <div id="controls">
-    <button class="ctrl up" data-key="up">▲</button>
-    <button class="ctrl left" data-key="left">◀</button>
-    <button class="ctrl down" data-key="down">▼</button>
-    <button class="ctrl right" data-key="right">▶</button>
+
+    <button class="control up" data-key="up">▲</button>
+
+    <button class="control left" data-key="left">◀</button>
+    <button class="control down" data-key="down">▼</button>
+    <button class="control right" data-key="right">▶</button>
+
   </div>
 
-  <div id="help">
-    🚚 ট্রাক চালাতে বোতাম চাপুন
-  </div>
-
-  <div id="menu">
-    <button onclick="showInfo()">📋 তথ্য</button>
-    <button onclick="resetGame()">🔄 Reset</button>
+  <div id="mode">
+    🚶 WALK
   </div>
 
 </div>
