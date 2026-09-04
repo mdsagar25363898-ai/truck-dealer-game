@@ -2,177 +2,46 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Truck Dealer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>🚚 Truck Dealer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+<div id="game">
 
-  <!-- Top Bar -->
-  <header class="topbar">
-    <div>
-      <h1>🚚 Truck Dealer</h1>
-      <p>Build Your Trucking Business</p>
-    </div>
+  <div id="hud">
+    <div>💰 ৳<span id="money">380000</span></div>
+    <div>⛽ <span id="fuel">100</span>%</div>
+    <div>🚚 <span id="truckName">Mini Truck</span></div>
+  </div>
 
-    <div class="money">
-      💰 ৳<span id="money">500000</span>
-    </div>
-  </header>
+  <canvas id="canvas"></canvas>
 
-  <!-- Main Menu -->
-  <nav class="menu">
-    <button onclick="showPage('market')">🏪 Market</button>
-    <button onclick="showPage('drive')">🚚 Drive</button>
-    <button onclick="showPage('showroom')">🏢 Showroom</button>
-    <button onclick="showPage('garage')">🔧 Garage</button>
-    <button onclick="showPage('workers')">👷 Workers</button>
-  </nav>
+  <div id="location">🏪 SHOWROOM</div>
 
-  <main>
+  <div id="message"></div>
 
-    <!-- MARKET -->
-    <section id="market" class="page active">
-      <div class="title">
-        <h2>🏪 Truck Market</h2>
-        <p>এখান থেকে নতুন ট্রাক কিনুন</p>
-      </div>
+  <button id="action" class="actionBtn">🚪 বের হন</button>
 
-      <div id="marketList" class="truck-list"></div>
-    </section>
+  <div id="controls">
+    <button class="ctrl up" data-key="up">▲</button>
+    <button class="ctrl left" data-key="left">◀</button>
+    <button class="ctrl down" data-key="down">▼</button>
+    <button class="ctrl right" data-key="right">▶</button>
+  </div>
 
+  <div id="help">
+    🚚 ট্রাক চালাতে বোতাম চাপুন
+  </div>
 
-    <!-- DRIVE -->
-    <section id="drive" class="page">
+  <div id="menu">
+    <button onclick="showInfo()">📋 তথ্য</button>
+    <button onclick="resetGame()">🔄 Reset</button>
+  </div>
 
-      <div class="title">
-        <h2>🛣️ Truck Driving</h2>
-        <p id="driveStatus">একটি ট্রাক নিয়ে রাস্তায় বের হন</p>
-      </div>
+</div>
 
-      <div class="road">
-
-        <div class="road-line line1"></div>
-        <div class="road-line line2"></div>
-        <div class="road-line line3"></div>
-
-        <div id="playerTruck" class="player-truck">
-          🚚
-        </div>
-
-      </div>
-
-      <div class="drive-info">
-        <div>🚚 <span id="currentTruck">কোনো ট্রাক নেই</span></div>
-        <div>⛽ Fuel: <span id="fuel">100</span>%</div>
-        <div>💰 ৳<span id="driveMoney">0</span></div>
-      </div>
-
-      <div class="controls">
-        <button onclick="moveTruck('left')">⬅️</button>
-        <button onclick="moveTruck('up')">⬆️</button>
-        <button onclick="moveTruck('down')">⬇️</button>
-        <button onclick="moveTruck('right')">➡️</button>
-      </div>
-
-      <button class="big-button" onclick="goToShowroom()">
-        🏢 SHOWROOM-এ যান
-      </button>
-
-      <button class="big-button" onclick="goToGarage()">
-        🔧 GARAGE-এ যান
-      </button>
-
-    </section>
-
-
-    <!-- SHOWROOM -->
-    <section id="showroom" class="page">
-
-      <div class="title">
-        <h2>🏢 Truck Showroom</h2>
-        <p>আপনার ট্রাক এখানে রাখুন ও ব্যবসা করুন</p>
-      </div>
-
-      <div id="showroomTruck" class="showroom-box">
-        <div class="big-truck">🚚</div>
-        <h3 id="showroomName">কোনো ট্রাক নেই</h3>
-        <p id="showroomInfo">Market থেকে ট্রাক কিনুন</p>
-      </div>
-
-      <button class="big-button" onclick="showPage('market')">
-        🏪 Market-এ যান
-      </button>
-
-      <button class="big-button" onclick="showPage('drive')">
-        🛣️ ট্রাক চালান
-      </button>
-
-    </section>
-
-
-    <!-- GARAGE -->
-    <section id="garage" class="page">
-
-      <div class="title">
-        <h2>🔧 My Garage</h2>
-        <p>আপনার ট্রাক মেরামত ও Upgrade করুন</p>
-      </div>
-
-      <div id="garageList"></div>
-
-      <button class="big-button" onclick="showPage('drive')">
-        🚚 ট্রাক নিয়ে বের হন
-      </button>
-
-    </section>
-
-
-    <!-- WORKERS -->
-    <section id="workers" class="page">
-
-      <div class="title">
-        <h2>👷 Workers</h2>
-        <p>আপনার ব্যবসার জন্য কাজের লোক রাখুন</p>
-      </div>
-
-      <div class="worker-box">
-
-        <div class="worker-icon">👨‍🔧</div>
-
-        <h3>Truck Driver</h3>
-
-        <p>
-          আপনার হয়ে ট্রাক চালাবে এবং টাকা আয় করবে।
-        </p>
-
-        <h3>বেতন: ৳20,000</h3>
-
-        <button class="big-button" onclick="hireWorker()">
-          👷 Worker Hire করুন
-        </button>
-
-      </div>
-
-      <div class="worker-stats">
-        👷 মোট Worker:
-        <b id="workerCount">0</b>
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- Bottom Information -->
-  <footer>
-    <span>🚚 Truck Dealer</span>
-    <span>💰 ৳<b id="bottomMoney">500000</b></span>
-  </footer>
-
-
-  <script src="game.js"></script>
-
+<script src="game.js"></script>
 </body>
 </html>
